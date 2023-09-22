@@ -1,6 +1,6 @@
 alias ff='fzf'
 alias ccd='code .'
-alias nvv='nvim .'
+alias nv='nvim .'
 alias devS='npm run devStart'
 alias cl='clear'
 
@@ -8,9 +8,12 @@ alias cl='clear'
 alias bnn='nvim ~/.bash_aliases'
 alias dnn='cd ~/Desktop/'
 alias cnn='cd ~/Desktop/kata-machine/'
-alias enn='cd ~/Desktop/Express/contact-app/'
+alias enn='cd ~/Desktop/React-Native/Expo/expo-tutorial'
+alias xnn='cd ~/Desktop/Express/express-tutorial/'
 alias qnn='cd ~/Desktop/QuickBoard/'
 alias gnn='cd ~/Desktop/Leetcode/'
+alias nnn='cd ~/Desktop/Notes/'
+alias android='cd ~/androidStudio/android-studio-2022.3.1.19-linux/android-studio/bin/ && ./studio.sh'
 
 # git aliases 
 function _gacp ()
