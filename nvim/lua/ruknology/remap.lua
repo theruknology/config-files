@@ -8,6 +8,13 @@ vim.keymap.set("n", "<leader>vv", ':NvimTreeFocus<CR>', {
 })
 vim.keymap.set("i", "jj", "<Esc>")
 
+-- Markdown preview shortcuts here
+vim.keymap.set("n", "<leader>md", ':MarkdownPreview<CR>', {
+    noremap = true
+})
+vim.keymap.set("n", "<leader>mds", ':MarkdownPreviewStop<CR>', {
+    noremap = true
+})
 
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")

@@ -33,7 +33,8 @@ return require('packer').startup(function(use)
     use('mbbill/undotree')
     use('tpope/vim-fugitive')
     use('tpope/vim-surround')
-    use('terryma/vim-multiple-cursors')
+    use({ "iamcco/markdown-preview.nvim",
+    run = "cd app && npm install", setup = function() vim.g.mkdp_filetypes = { "markdown" } end, ft = { "markdown" }, })
     use {
         "windwp/nvim-autopairs",
         config = function() require("nvim-autopairs").setup {} end
@@ -63,5 +64,3 @@ return require('packer').startup(function(use)
     }
 
 end)
-
-
