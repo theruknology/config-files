@@ -11,14 +11,14 @@
 ## Partitioning
 1. lsblk - to see all drives
 2. Formatting
-    a. gdisk /dev/disktoformat
-    b. x - for expert options 
-    c. z - for Formatting
+    - gdisk /dev/disktoformat
+    - x - for expert options 
+    - z - for Formatting
 3. cfdisk /dev/disktoinstall
-    a. select dos (gpt for more than 2TB)
-    b. create 128M partition for bootable (Grub)
-    c. create 4GB for swap - make type swap
-    d. create rest partition
+    - select dos (gpt for more than 2TB)
+    - create 128M partition for bootable (Grub)
+    - create 4GB for swap - make type swap
+    - create rest partition
 4. mkfs.ext4 /dev/-bootpartition-
 5. mkfs.ext4 /dev/-restpartition-
 6. mkswap /dev/-swappartition-
@@ -40,11 +40,11 @@
 6. grub-mkconfig -o /boot/grub/grub.cfg
 7. passwd
 8. vim /etc/locale.gen
-    a. uncomment the languages to select and :wq
-    b. locale-gen
-    c. vim /etc/locale.conf 
-    d. first line here: LANG=en_US.UTF-8
-    e. :wq
+    - uncomment the languages to select and :wq
+    - locale-gen
+    - vim /etc/locale.conf 
+    - first line here: LANG=en_US.UTF-8
+    - :wq
 9. vim /etc/hostname
     - First line here: -your-username-
 10. ln -sf /usr/share/zoneinfo/Asia/Riyadh /etc/localtime
@@ -55,18 +55,21 @@
 2. reboot
 
 ## User Creation
-
+1. su
+2. useradd -m -G wheel ***username***
+3. vi /etc/sudoers
+    - uncomment: %wheel   ALL=(ALL)   ALL
+    - :wq
+4. passwd ***username***
+5. chown -R ***username***:users /home/***username***
 
 ## Packages
-1. pacman -S git i3 lightdm xorg lightdm-gtk-greeter dmenu terminator alacritty polybar nodejs
+1. pacman -Syu
+2. pacman -S git i3 lightdm xorg lightdm-gtk-greeter dmenu terminator alacritty polybar nodejs
 
 ## Troubleshoot Network
 1. nmcli d
 2. nmcli r wifi on
 3. nmcli d wifi list
 4. nmcli d wifi connect -wifiname- -password-
-
-
-
-
 
