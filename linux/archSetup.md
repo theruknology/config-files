@@ -63,6 +63,11 @@
 4. passwd ***username***
 5. chown -R ***username***:users /home/***username***
 
+## Audio Configuration
+1. pacman -S pipwire
+2. pacman -S pavucontrol
+3. start the pipewire service by dmenu or terminal
+
 ## Packages
 1. pacman -Syu
 2. pacman -S git i3 lightdm xorg lightdm-gtk-greeter dmenu terminator alacritty polybar nodejs
