@@ -29,38 +29,56 @@ return require('packer').startup(function(use)
 
     use('nvim-treesitter/nvim-treesitter', {run =  ':TSUpdate'} )
     use('nvim-treesitter/playground')
-    use('theprimeagen/harpoon')
+--    use('theprimeagen/harpoon')
     use('mbbill/undotree')
     use('tpope/vim-fugitive')
     use('tpope/vim-surround')
-    use({ "iamcco/markdown-preview.nvim",
-    run = "cd app && npm install", setup = function() vim.g.mkdp_filetypes = { "markdown" } end, ft = { "markdown" }, })
+
+    -- install without yarn or npm
+    use({
+        "iamcco/markdown-preview.nvim",
+        run = function() vim.fn["mkdp#util#install"]() end,
+    })
+
     use {
         "windwp/nvim-autopairs",
         config = function() require("nvim-autopairs").setup {} end
     }
 
     use {
-        'VonHeikemen/lsp-zero.nvim',
-        branch = 'v1.x',
-        requires = {
-            -- LSP Support
-            {'neovim/nvim-lspconfig'},
-            {'williamboman/mason.nvim'},
-            {'williamboman/mason-lspconfig.nvim'},
-
-            -- Autocompletion
-            {'hrsh7th/nvim-cmp'},
-            {'hrsh7th/cmp-buffer'},
-            {'hrsh7th/cmp-path'},
-            {'saadparwaiz1/cmp_luasnip'},
-            {'hrsh7th/cmp-nvim-lsp'},
-            {'hrsh7th/cmp-nvim-lua'},
-
-            -- Snippets
-            {'L3MON4D3/LuaSnip'},
-            {'rafamadriz/friendly-snippets'},
-        }
+        "williamboman/mason.nvim",
+        "williamboman/mason-lspconfig.nvim",
+        "neovim/nvim-lspconfig",
+        {'VonHeikemen/lsp-zero.nvim', branch = 'v3.x'},
+        {'hrsh7th/cmp-nvim-lsp'},
+        {'hrsh7th/nvim-cmp'},
+        {'L3MON4D3/LuaSnip'},
     }
+
+    use('jose-elias-alvarez/null-ls.nvim')
+    use('MunifTanjim/prettier.nvim')
+
+--    use {
+--        'VonHeikemen/lsp-zero.nvim',
+--        branch = 'v1.x',
+--        requires = {
+--            -- LSP Support
+--            {'neovim/nvim-lspconfig'},
+--            {'williamboman/mason.nvim'},
+--            {'williamboman/mason-lspconfig.nvim'},
+--
+--            -- Autocompletion
+--            {'hrsh7th/nvim-cmp'},
+--            {'hrsh7th/cmp-buffer'},
+--            {'hrsh7th/cmp-path'},
+--            {'saadparwaiz1/cmp_luasnip'},
+--            {'hrsh7th/cmp-nvim-lsp'},
+--            {'hrsh7th/cmp-nvim-lua'},
+--
+--            -- Snippets
+--            {'L3MON4D3/LuaSnip'},
+--            {'rafamadriz/friendly-snippets'},
+--        }
+--    }
 
 end)
