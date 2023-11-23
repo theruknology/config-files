@@ -20,7 +20,6 @@ return require('packer').startup(function(use)
 
     -- These optional plugins should be loaded directly because of a bug in Packer lazy loading
     use 'lewis6991/gitsigns.nvim' -- OPTIONAL: for git status
-    use 'romgrk/barbar.nvim'
 
     use('nvim-tree/nvim-tree.lua')
     use('nvim-tree/nvim-web-devicons')
@@ -29,10 +28,11 @@ return require('packer').startup(function(use)
 
     use('nvim-treesitter/nvim-treesitter', {run =  ':TSUpdate'} )
     use('nvim-treesitter/playground')
---    use('theprimeagen/harpoon')
+    use('theprimeagen/harpoon')
     use('mbbill/undotree')
     use('tpope/vim-fugitive')
     use('tpope/vim-surround')
+    use('ThePrimeagen/vim-be-good')
 
     -- install without yarn or npm
     use({

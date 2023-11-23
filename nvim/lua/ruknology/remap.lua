@@ -1,11 +1,11 @@
 vim.g.mapleader = " "
--- vim.keymap.set("n", "<leader>vv", vim.cmd.Ex)
-vim.keymap.set("n", "<leader>tt", ':NvimTreeToggle<CR>', {
-    noremap = true
-})
-vim.keymap.set("n", "<leader>vv", ':NvimTreeFocus<CR>', {
-    noremap = true
-})
+vim.keymap.set("n", "<leader>vv", vim.cmd.Ex)
+-- vim.keymap.set("n", "<leader>tt", ':NvimTreeToggle<CR>', {
+--     noremap = true
+-- })
+-- vim.keymap.set("n", "<leader>vv", ':NvimTreeFocus<CR>', {
+--     noremap = true
+-- })
 vim.keymap.set("i", "jj", "<Esc>")
 
 -- Markdown preview shortcuts here
