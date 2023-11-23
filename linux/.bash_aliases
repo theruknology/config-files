@@ -1,4 +1,3 @@
-alias ff='fzf'
 alias ccd='code .'
 alias nv='nvim .'
 alias devS='npm run devStart'
@@ -36,3 +35,20 @@ function _mg ()
    mkdir "$1" && cd "$1" 
 }
 
+function ff() {
+    work=$(find . -type d | fzf)
+    if [ -z "$work" ]; then
+        cd ./
+    else 
+        cd "$work"
+    fi
+}
+
+function fff() {
+    work=$(find "$HOME" -type d | fzf)
+    if [ -z "$work" ]; then
+        cd ./
+    else 
+        cd "$work"
+    fi
+}
