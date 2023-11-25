@@ -13,7 +13,10 @@ set $mod Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font pango:FreeSans 11
+font pango:FiraCode Nerd Font 10
+
+# wallpaper setup
+exec_always feh --bg-fill ~/Downloads/dotfiles-master/Wallpapers/aurora_borealis.png
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
@@ -44,14 +47,28 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
+# move tiling windows via drag & drop by left-clicking into the title bar,
+# or left-clicking anywhere into the window while holding the floating modifier.
+tiling_drag modifier titlebar
+
 # start a terminal
-bindsym $mod+Return exec gnome-terminal
+bindsym $mod+Return exec alacritty
+
+bindsym $mod+x exec ~/.config/scripts/lock.sh
+
+# start a browser
+bindsym $mod+Shift+w exec firefox 
 
 # kill focused window
 bindsym $mod+Shift+q kill
 
+bindsym $mod+p exec ~/.config/polybar/forest/launch.sh
+bindsym $mod+Shift+p exec killall polybar
+
 # start dmenu (a program launcher)
-bindsym $mod+d exec --no-startup-id dmenu_run
+# Good ROFI theme: pwidgets
+bindsym $mod+d exec rofi -no-config -no-lazy-grab -show drun -modi drun -theme ~/.config/polybar/forest/scripts/rofi/launcher.rasi
+bindsym $mod+Shift+d exec dmenu_run -fn "xft:droid sans:bold:pixelsize=11:antialias=true:hinting=slight" -nb "#0f0f0f" -nf "#a6a6a6" -sb "#0f0f0f" -sf "#8f8fed"
 # A more modern dmenu replacement is rofi:
 # bindcode $mod+40 exec "rofi -modi drun,run -show drun"
 # There also is i3-dmenu-desktop which only displays applications shipping a
@@ -59,22 +76,22 @@ bindsym $mod+d exec --no-startup-id dmenu_run
 # bindcode $mod+40 exec --no-startup-id i3-dmenu-desktop
 
 # change focus
-bindsym $mod+j focus left
-bindsym $mod+k focus down
-bindsym $mod+l focus up
-bindsym $mod+semicolon focus right
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
 
 # alternatively, you can use the cursor keys:
-bindsym $mod+Left focus left
-bindsym $mod+Down focus down
-bindsym $mod+Up focus up
-bindsym $mod+Right focus right
+#bindsym $mod+Left focus left
+#bindsym $mod+Down focus down
+#bindsym $mod+Up focus up
+#bindsym $mod+Right focus right
 
 # move focused window
-bindsym $mod+Shift+j move left
-bindsym $mod+Shift+k move down
-bindsym $mod+Shift+l move up
-bindsym $mod+Shift+semicolon move right
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Shift+Left move left
@@ -83,7 +100,7 @@ bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
 # split in horizontal orientation
-bindsym $mod+h split h
+bindsym $mod+Shift+minus split h
 
 # split in vertical orientation
 bindsym $mod+v split v
@@ -105,17 +122,14 @@ bindsym $mod+space focus mode_toggle
 # focus the parent container
 bindsym $mod+a focus parent
 
-bindsym $mod+Shift+w exec google-chrome
-bindsym $mod+Shift+v exec code
-
 # focus the child container
 #bindsym $mod+d focus child
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
-set $ws1 "1:"
-set $ws2 "2: "
-set $ws3 "3: "
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
 set $ws4 "4"
 set $ws5 "5"
 set $ws6 "6"
@@ -163,10 +177,10 @@ mode "resize" {
         # Pressing right will grow the window’s width.
         # Pressing up will shrink the window’s height.
         # Pressing down will grow the window’s height.
-        bindsym j resize shrink width 10 px or 10 ppt
-        bindsym k resize grow height 10 px or 10 ppt
-        bindsym l resize shrink height 10 px or 10 ppt
-        bindsym semicolon resize grow width 10 px or 10 ppt
+        bindsym h resize shrink width 10 px or 10 ppt
+        bindsym j resize grow height 10 px or 10 ppt
+        bindsym k resize shrink height 10 px or 10 ppt
+        bindsym l resize grow width 10 px or 10 ppt
 
         # same bindings, but for the arrow keys
         bindsym Left resize shrink width 10 px or 10 ppt
@@ -182,85 +196,26 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
-# Start i3bar to display a workspace bar (plus the system information i3status
-# finds out, if available)
-bar {
-    status_command i3status -c /home/$USER/.config/i3status/i3status.conf
-    font pango:JetBrainsMono Nerd Font Bold 11
-        colors {
-            background $in-bgcolor
-            statusline $bgcolor
-                separator #191919
-#                       border          background      text
-                focused_workspace       $bgcolor        $bgcolor        $text
-                inactive_workspace      $in-bgcolor     $in-bgcolor     $text
-                urgent_workspace        $u-bgcolor      $u-bgcolor      $text   
 
-        }
-#    i3bar_command i3bar --transparency
-#        tray_output none
-}
 
-# Display Wallpaper
-exec_always feh --bg-fill ~/Downloads/wallp.jpg
-
-# Transparency with picom compositor
-exec_always picom -f 
-
-# Color shemes for windows 
-set $bgcolor    #AED2FF
-# set $bgcolor    #916DB3
-set $in-bgcolor #313866
-# set $in-bgcolor #583D72
-# set $in-bgcolor #27005D
-
-set $focused-ws #523d6480
-set $bar-color  #523d640D
-
-set $text       #313866
-# set $text       #ffffff
-set $u-bgcolor  #ff0000
-set $indicator  #a8a3c1
-set $in-text    #969696
-#                       border          background      text            indicator (a line which shows where the next window will be placed)     
-client.focused          $bgcolor        $bgcolor        $text           $indicator
-client.unfocused        $in-bgcolor     $in-bgcolor     $in-text        $in-bgcolor
-client.focused_inactive $in-bgcolor     $in-bgcolor     $in-text        $in-bgcolor
-client.urgent           $u-bgcolor      $u-bgcolor      $text           $u-bgcolor 
-# Shortcut for Lockscreen
-bindsym $mod+x exec /home/$USER/.config/scripts/lock
-
-default_border pixel 4
-# gaps
-# disable window titlebars
-for_window [class="^.*"] border pixel 2
+# GAPS
+for_window [class="^.*"] border pixel 1
 
 gaps inner 5
-gaps outer 2
-
-bindsym $mod+Shift+g gaps inner all set 6; gaps outer all set 2
-bindsym $mod+Shift+n gaps inner all set 0; gaps outer all set 0
-
-# Only enable gaps on a workspace when there is at least one container
-smart_gaps on
-
-# Activate smart borders (always)
+gaps outer 1
+#smart_gaps on
 #smart_borders on
 
-# Activate smart borders (only when there are effectively no gaps)
-#smart_borders no_gaps
+#####################################################################################################################
+#################                          i3 gaps change                                           #################
+#####################################################################################################################
 
-# Hide edge borders only if there is one window with no gaps
-hide_edge_borders smart_no_gaps
 
-# What follows here is optional and defines a mode that allows you to resize the gaps on the fly.
-# Press $mod1+Shift+g to enter the gap mode. Choose o or i for modifying outer/inner gaps. 
-# Press one of + / - (in-/decrement for current workspace) or 0 (remove gaps for current workspace).
-# If you also press Shift with these keys, the change will be global for all workspaces.
+
 set $mode_gaps Gaps: (o) outer, (i) inner
 set $mode_gaps_outer Outer Gaps: +|-|0 (local), Shift + +|-|0 (global)
 set $mode_gaps_inner Inner Gaps: +|-|0 (local), Shift + +|-|0 (global)
-bindsym $mod1+Shift+g mode "$mode_gaps"
+bindsym $mod+Shift+g mode "$mode_gaps"
 
 mode "$mode_gaps" {
         bindsym o      mode "$mode_gaps_outer"
@@ -293,3 +248,31 @@ mode "$mode_gaps_outer" {
         bindsym Return mode "default"
         bindsym Escape mode "default"
 }
+
+    ##START THEMING WM
+
+    # Window color settings
+
+# Define colors variables:
+set $darkbluetrans	#08052be6
+set $darkblue		#08052b
+set $lightblue		#5294e2
+set $urgentred		#e53935
+set $white		#ffffff
+set $black		#000000
+set $purple		#e345ff
+set $darkgrey		#383c4a
+set $grey		#b0b5bd
+set $mediumgrey		#8b8b8b
+set $yellowbrown	#e1b700
+
+# define colors for windows:
+#class		        	border		bground		text		indicator	child_border
+client.focused		    	$lightblue	$darkblue	$white		$mediumgrey	$mediumgrey
+client.unfocused	    	$darkblue	$darkblue	$grey		$darkgrey	$darkgrey
+client.focused_inactive		$darkblue	$darkblue	$grey		$black		$black
+client.urgent		    	$urgentred	$urgentred	$white		$yellowbrown	$yellowbrown
+ ##STOP THEMING WM
+
+# exec_always picom -f
+# exec_always ~/.config/polybar/forest/launch.sh &
