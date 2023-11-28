@@ -2,6 +2,8 @@ alias ccd='code .'
 alias nv='nvim .'
 alias devS='npm run devStart'
 alias cl='clear'
+alias op='xrandr --output VGA-1 --off && i3-msg restart'
+alias dual='xrandr --output HDMI-1 --mode 1440x900 && xrandr --output VGA-1 --auto --right-of HDMI-1 && i3-msg restart'
 
 # WORKSPACES
 alias bnn='nvim ~/.bash_aliases'

@@ -274,5 +274,5 @@ client.focused_inactive		$darkblue	$darkblue	$grey		$black		$black
 client.urgent		    	$urgentred	$urgentred	$white		$yellowbrown	$yellowbrown
  ##STOP THEMING WM
 
-# exec_always picom -f
+exec_always picom -f --fade-in-step=1 --fade-out-step=1 --fade-delta=0
 # exec_always ~/.config/polybar/forest/launch.sh &
