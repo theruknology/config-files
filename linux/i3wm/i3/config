@@ -275,4 +275,7 @@ client.urgent		    	$urgentred	$urgentred	$white		$yellowbrown	$yellowbrown
  ##STOP THEMING WM
 
 exec_always picom -f --fade-in-step=1 --fade-out-step=1 --fade-delta=0
+exec_always xset r rate 300 50
+exec_always setxkbmap -option "caps:ctrl_modifier" 
+exec_always setxkbmap -option "numpad:mac"
 # exec_always ~/.config/polybar/forest/launch.sh &
