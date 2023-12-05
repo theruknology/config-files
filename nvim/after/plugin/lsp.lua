@@ -15,6 +15,40 @@ lsp_zero.on_attach(function(client, bufnr)
   vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
 end)
 
+-- toggling error diagnostic STARTS
+
+vim.g.diagnostics_active = true
+function _G.toggle_diagnostics()
+  if vim.g.diagnostics_active then
+    print("diagnostic was active")
+    vim.g.diagnostics_active = false
+    -- vim.lsp.diagnostic.clear(0)
+    vim.diagnostic.reset()
+    vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+      vim.lsp.diagnostic.on_publish_diagnostics, {
+        virtual_text = false,
+        signs = true,
+        underline = false,
+        update_in_insert = false,
+      }
+    )
+  else
+    vim.g.diagnostics_active = true
+    vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+      vim.lsp.diagnostic.on_publish_diagnostics, {
+        virtual_text = true,
+        signs = true,
+        underline = true,
+        update_in_insert = false,
+      }
+    )
+  end
+end
+
+vim.api.nvim_set_keymap('n', '<leader>te', ':call v:lua.toggle_diagnostics()<CR>',  {noremap = true, silent = true})
+
+-- toggling error diagnostic ENDS
+
 require('mason').setup({})
 require('mason-lspconfig').setup({
   ensure_installed = {'tsserver', 'rust_analyzer', "tailwindcss"},
